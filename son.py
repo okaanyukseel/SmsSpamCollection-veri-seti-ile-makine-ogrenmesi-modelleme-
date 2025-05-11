@@ -15,12 +15,12 @@ df['label'] = df['label'].map({"ham": 0, "spam": 1})
 X_train, X_test, y_train, y_test = train_test_split(df['message'], df['label'], test_size=0.2, random_state=42)
 
 # 3. TF-IDF vektörleme
-vectorizer = TfidfVectorizer(stop_words="english", max_df=0.9, min_df=5)
+vectorizer = TfidfVectorizer(stop_words="english", max_df=0.9,min_df=5)
 X_train_vec = vectorizer.fit_transform(X_train)
 X_test_vec = vectorizer.transform(X_test)
 
 # 4. Model eğitimi (Lojistik Regresyon)
-model = LogisticRegression(C=0.3, penalty='l2', class_weight='balanced', max_iter=1000)
+model = LogisticRegression(class_weight='balanced',max_iter=1000)
 model.fit(X_train_vec, y_train)
 
 # 5. Tahmin ve doğruluk
